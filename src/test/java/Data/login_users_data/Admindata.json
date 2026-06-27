@@ -1,0 +1,20 @@
+[
+  {
+    "email": "akhil12345@gamil.com",
+    "password": "akhil78900"
+  },
+  {
+    "email" : "sneha.reddy.tech@yahoo.com",
+    "password": "snehareddypwd"
+  },
+
+  {
+    "email":"kavya.iyer.admin@gmail.com",
+    "password":   "kavyaiyeradmin"
+  },
+  {
+    "email": "pooja.sharma.hr@gmail.com",
+     "password":  "poojasharma123"
+  }
+
+]

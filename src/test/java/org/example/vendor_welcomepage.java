@@ -28,7 +28,7 @@ public class vendor_welcomepage extends baseTest {
         vl.login_into();
     }
 
-   @Test()
+   //@Test(groups = {"vendor_users"})
     public void profile_details() throws InterruptedException {
         login();
         vwp = vendor_welcomepage();
@@ -47,7 +47,7 @@ public class vendor_welcomepage extends baseTest {
         vprofile.signout();
     }
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void get_details() throws InterruptedException {
         login();
         Thread.sleep(2000);
@@ -59,7 +59,7 @@ public class vendor_welcomepage extends baseTest {
 
     }
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void live_requirement_details() throws InterruptedException {
         login();
         Thread.sleep(2000);
@@ -76,7 +76,7 @@ public class vendor_welcomepage extends baseTest {
 
     }
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void send_offer_to_request() throws InterruptedException {
         login();
         // inherited 'driver' instance directly from baseTest
@@ -109,7 +109,7 @@ public class vendor_welcomepage extends baseTest {
         }
     }
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void cancelbtn_the_request_offer_after_filling() {
         login();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -142,7 +142,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
 
-    @Test
+    @Test(groups = {"vendor_users"})
     public void clear_btn_for_for_all_requests()
     {
         login();
@@ -169,7 +169,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void no_of_offers_you_offered()
     {
         login();
@@ -186,7 +186,7 @@ public class vendor_welcomepage extends baseTest {
 
     }
 
-    @Test(groups = {"vendor_my_offers_status"})
+    @Test(groups = {"vendor_my_offers_status","vendor_users"})
     public void pending_status_my_offers()
     {
         login();
@@ -204,13 +204,14 @@ public class vendor_welcomepage extends baseTest {
         }
         if(count==0)
         {
-            System.out.println("No offers are accepted");
+            System.out.println("No offers are pending");
+            Assert.fail("No offers are pending");
         }
 
     }
 
 
-    @Test(groups = {"vendor_my_offers_status"})
+    @Test(groups = {"vendor_my_offers_status","vendor_users"})
     public void Accepted_status_my_offers()
     {
         login();
@@ -228,11 +229,12 @@ int count =0;
         if(count==0)
         {
             System.out.println("No offers are accepted");
+            Assert.fail("No offers are accepted");
         }
 
     }
 
-    @Test(groups = {"vendor_my_offers_status"})
+    @Test(groups = {"vendor_my_offers_status","vendor_users"})
     public void Rejected_status_my_offers()
     {
         login();
@@ -254,7 +256,7 @@ int count =0;
 
     }
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void withdraw_the_offer_for_all() throws InterruptedException {
         login();
         vwp = vendor_welcomepage();
@@ -273,7 +275,7 @@ int count =0;
     }
 
 
-    @Test()
+    @Test(groups = {"vendor_users"})
     public void dummy() throws InterruptedException {
         withdraw_a_particular_offer("Royal Enfield Classic");
     }
@@ -296,7 +298,7 @@ int count =0;
 
         if(index==0)
         {
-            System.out.println("No offer present with that bike name: "+bikename);
+           Assert.fail("No offer present with that bike name: "+bikename);
         }
         else{
             vwp.Withdraw_btn().get(index-1).click();

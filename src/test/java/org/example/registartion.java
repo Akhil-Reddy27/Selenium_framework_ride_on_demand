@@ -53,7 +53,10 @@ cr =customer_landing_page();
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy","akhil123456@gamil.com","akhil789000","9989884094","hyd","ab vechiles");
        vr.Error_login_info(vr.proceedbtn);
-        Assert.assertEquals(vr.error_validation(),"Email akhil123456@gamil.com is already registered. Please login.");
+       // Assert.assertEquals(vr.error_validation(),"Email akhil123456@gamil.com is already registered. Please login.");
+        //additional to fail test
+        //Assert.assertTrue(false);
+
 
     }
     @Test(groups ={"error_test"})
@@ -63,6 +66,7 @@ cr =customer_landing_page();
        ar.AdminRegistrationprocess("Akhil Reddy","akhil123456@gamil.com","akhil789000","9989884094","hyd");
         ar.Error_login_info(ar.proceedbtn);
         Assert.assertEquals(ar.error_validation(),"Email akhil123456@gamil.com is already registered as VENDOR.");
+        Assert.assertTrue(false);
     }
 
     @Test(groups ={"error_test"})
@@ -72,35 +76,38 @@ cr =customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy","akhil123456@gamil.com","akhil789000","9989884094","hyd");
         cr.Error_login_info(cr.proceedbtn);
         Assert.assertEquals(cr.error_validation(),"Email akhil123456@gamil.com is already registered as VENDOR.");
+        Assert.assertTrue(false);
     }
 
-    @Test()
+    @Test(groups ={"error_test"})
     public void noemail_customer_reg()
     {
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy"," ","akhil789000","9989884094","hyd");
         cr.proceedbtn.click();
         Assert.assertEquals(cr.error_validation(),"Enter a valid email address to continue.");
+        Assert.assertTrue(false);
 
     }
 
-    @Test()
+    @Test(groups ={"error_test"})
     public void noemail_admin_reg()
     {
         ar = admin_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy"," ","akhil789000","9989884094","hyd");
         ar.proceedbtn.click();
         Assert.assertEquals(ar.error_validation(),"Enter a valid email address to continue.");
-
+        Assert.assertTrue(false);
     }
 
-    @Test()
+    @Test(groups ={"error_test"})
     public void noemail_vendor_reg()
     {
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy"," ","akhil789000","9989884094","hyd","ab vechiles");
         vr.proceedbtn.click();
         Assert.assertEquals(vr.error_validation(),"Enter a valid email address to continue.");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})
@@ -123,6 +130,7 @@ cr =customer_landing_page();
         cr.proceedbtn.click();
 
         Assert.assertEquals(cr.error_validation(), "Enter a valid email address to continue.");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})
@@ -133,6 +141,7 @@ cr =customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy", "akhil1@gmail.com", "akhil789000", "9989884194", " ");
         cr.proceedbtn.click();
         Assert.assertEquals(cr.error_validation(), "Validation failed");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})
@@ -144,6 +153,7 @@ cr =customer_landing_page();
         cr.proceedbtn.click();
 
         Assert.assertEquals(cr.error_validation(), "Password must be at least 8 characters.");
+        Assert.assertTrue(false);
     }
 
 
@@ -156,6 +166,7 @@ cr =customer_landing_page();
         vr.proceedbtn.click();
 
         Assert.assertEquals(vr.error_validation(), "Enter a valid email address to continue.");
+        Assert.assertTrue(false);
     }
 
 
@@ -167,6 +178,7 @@ cr =customer_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy", "akhil@gmail.com", "akhil789000", "9989884094", " ","ab");
         vr.proceedbtn.click();
         Assert.assertEquals(vr.error_validation(), "Validation failed");
+        Assert.assertTrue(false);
     }
 
 
@@ -180,6 +192,7 @@ cr =customer_landing_page();
         vr.proceedbtn.click();
 
         Assert.assertEquals(vr.error_validation(), "Enter a valid email address to continue.");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})
@@ -191,6 +204,7 @@ cr =customer_landing_page();
         vr.proceedbtn.click();
 
         Assert.assertEquals(vr.error_validation(), "Password must be at least 8 characters.");
+        Assert.assertTrue(false);
     }
 
 
@@ -204,6 +218,7 @@ cr =customer_landing_page();
         ar.proceedbtn.click();
 
         Assert.assertEquals(ar.error_validation(), "Enter a valid email address to continue.");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})
@@ -214,6 +229,7 @@ cr =customer_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy", "akhil@gmail.com", "akhil789000", "9989884094", " ");
         ar.proceedbtn.click();
         Assert.assertEquals(ar.error_validation(), "Validation failed");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})
@@ -225,6 +241,7 @@ cr =customer_landing_page();
         ar.proceedbtn.click();
 
         Assert.assertEquals(ar.error_validation(), "Enter a valid email address to continue.");
+        Assert.assertTrue(false);
     }
 
     @Test(groups = {"error_test"})

@@ -19,6 +19,7 @@ public class Logins extends baseTest {
     public WebDriver driver;
     public Admin_login al;
 
+
     @Test(dataProvider = "admin_login_dataprovider",groups = {"login_users"})
     public void admin_Logins(HashMap<String,String> input)
     {

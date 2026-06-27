@@ -30,9 +30,9 @@ public class admin_welcomepage extends baseTest {
 
 
 
-    @Test()
+    //@Test(groups = "admin_users")
     public void signout() throws InterruptedException {
-      newlogin();
+
         awp = admin_welcomepage();
         Thread.sleep(2000);
         Assert.assertEquals(awp.welcome_mesg(),"Admin Dashboard");
@@ -47,7 +47,7 @@ public class admin_welcomepage extends baseTest {
       aprofile.signout();
     }
 
-    @Test()
+    @Test(groups = "admin_users")
     public void active_requirement_details() throws InterruptedException {
         newlogin();
         awp = admin_welcomepage();
@@ -62,8 +62,9 @@ public class admin_welcomepage extends baseTest {
             System.out.println(abc.get(i).getText());
         }
 
-         approve_vendor("ak");
-       // reject_vendor("avxPf");
+         approve_vendor("shop");
+        reject_vendor("avxPf");
+        signout();
 
     }
 // @Test()
@@ -156,7 +157,7 @@ public class admin_welcomepage extends baseTest {
 
     }
 
-    @Test(groups={"admin_dashboard_result"})
+    @Test(groups={"admin_dashboard_result","admin_users"})
     public void day_results() throws InterruptedException {
         newlogin();
         awp = admin_welcomepage();
@@ -171,7 +172,7 @@ public class admin_welcomepage extends baseTest {
 
     }
 
-    @Test(groups={"admin_dashboard_result"})
+    @Test(groups={"admin_dashboard_result", "admin_users"})
     public void month_results() throws InterruptedException {
         newlogin();
         awp = admin_welcomepage();
@@ -186,7 +187,7 @@ public class admin_welcomepage extends baseTest {
 
     }
 
-    @Test(groups={"admin_dashboard_result"})
+    @Test(groups={"admin_dashboard_result","admin_users"})
     public void year_results() throws InterruptedException {
         newlogin();
         awp = admin_welcomepage();

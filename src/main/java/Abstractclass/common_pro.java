@@ -20,14 +20,14 @@ public class common_pro {
 
     public void waitforWebElementToAppear(WebElement findBy)
     {
-        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(900));
+        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(20));
         w.until(ExpectedConditions.visibilityOf(findBy));
     }
 
 
     public void waitforElementToDisappear(WebElement e)
     {
-        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(900));
+        WebDriverWait w = new WebDriverWait(driver, Duration.ofSeconds(20));
         w.until(ExpectedConditions.invisibilityOf(e));
     }
 

@@ -68,7 +68,7 @@ public class customers_welcomepage extends baseTest {
     }
 
     @Test(groups = {"customer_users"})
-    public void printing_details_for_active_requests() throws InterruptedException {
+    public void printing_details_for_active_requests_and_accepting_offers_based_user_max_budget() throws InterruptedException {
         login();
         Thread.sleep(3000);
         cwp = customer_welcomepage();

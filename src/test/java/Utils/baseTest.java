@@ -3,6 +3,9 @@ package Utils;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pageObjects.Registrations.Admin_registration;
@@ -22,11 +25,14 @@ import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Properties;
 
 public class baseTest {
 
@@ -48,9 +54,30 @@ public class baseTest {
   public vwel vwp;
   public vendor_profile vprofile;
 
-    public WebDriver initialize()
-    {
-       driver = new ChromeDriver();
+    public WebDriver initialize() throws IOException {
+
+        Properties props = new Properties();
+        FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//resources//GlobalData.properties");
+        props.load(fis);
+        //we are using to read data from mvn terminal if its null we read the value from our globaldata properties file
+        String browsername = System.getProperty("browser")!=null?System.getProperty("browser"):props.getProperty("browser");
+
+        if(browsername.contains("chrome")){
+            ChromeOptions chromeOptions = new ChromeOptions();
+            if(browsername.contains("headless")) {
+                chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--window-size=1920,1080");
+            }
+            driver = new ChromeDriver(chromeOptions);
+
+        }
+        else if(browsername.equalsIgnoreCase("firefox")){
+            driver = new FirefoxDriver();
+        }
+        else if(browsername.equalsIgnoreCase("safari"))
+        {
+            driver = new SafariDriver();
+        }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
@@ -58,7 +85,7 @@ public class baseTest {
 
 
     @BeforeMethod(alwaysRun = true)
-    public void Set_up(org.testng.ITestContext context) // Add context parameter here
+    public void Set_up(org.testng.ITestContext context) throws IOException // Add context parameter here
     {
         driver = initialize();
         // Save the driver instance into TestNG's context attributes so the listener can easily pull it

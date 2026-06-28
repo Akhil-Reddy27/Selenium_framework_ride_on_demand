@@ -276,7 +276,7 @@ int count =0;
 
 
     @Test(groups = {"vendor_users"})
-    public void dummy() throws InterruptedException {
+    public void withdrawing_a_particular_offer() throws InterruptedException {
         withdraw_a_particular_offer("Royal Enfield Classic");
     }
 

@@ -8,9 +8,10 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
 import java.io.IOException;
 
-// FIXED: Removed "extends baseTest"
+
 public class Listener implements ITestListener {
 
     ExtentReports extent = Extentreports.getreports();
@@ -18,36 +19,34 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        // FIXED: Assign directly to a local variable to prevent thread cross-talk
+        // Assign directly to a local variable to prevent thread cross-talk
         ExtentTest test = extent.createTest(result.getMethod().getMethodName());
         extentTest.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
+
         extentTest.get().log(Status.PASS, "Test Passed");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         extentTest.get().fail(result.getThrowable());
-
-        // 1. Pull the active driver directly from the TestNG Context attributes safely
+        // Pull the active driver directly from the TestNG Context attributes safely
         ITestContext context = result.getTestContext();
         WebDriver activeDriver = (WebDriver) context.getAttribute("WebDriver");
 
         //If context didn't catch it, try extracting it straight from the running test instance
         if (activeDriver == null) {
             try {
-                activeDriver = (WebDriver) result.getTestClass()
-                        .getRealClass().getField("driver")
-                        .get(result.getInstance());
+                activeDriver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
             } catch (Exception e) {
                 System.out.println("Could not obtain WebDriver via reflection: " + e.getMessage());
             }
         }
 
-        // 2. Only take a screenshot if our driver extraction succeeded
+        //Only takes a screenshot if our driver extraction succeeded
         if (activeDriver != null) {
             String filepath = null;
             try {
@@ -70,8 +69,10 @@ public class Listener implements ITestListener {
         extentTest.get().log(Status.SKIP, "Test Skipped");
     }
 
+
     @Override
     public void onFinish(ITestContext context) {
+
         extent.flush();
     }
 }

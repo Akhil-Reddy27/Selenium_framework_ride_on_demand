@@ -63,6 +63,7 @@ public class Customer_login extends common_pro {
     }
     public void login()
     {
+
         log_proc.click();
     }
 }

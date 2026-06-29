@@ -9,6 +9,8 @@ import pageObjects.Welcomepages.Admins.admin_profile;
 import pageObjects.Welcomepages.Admins.awel;
 import pageObjects.logins.Admin_login;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class admin_welcomepage extends baseTest {
@@ -20,8 +22,7 @@ public class admin_welcomepage extends baseTest {
     public admin_profile aprofile;
 
 
-    public void newlogin()
-    {
+    public void newlogin() throws IOException {
         al = Admin_login_page();
         al.login_application("akhilreddya7@gmail.com","akhil7890");
         al.login_into();
@@ -31,7 +32,7 @@ public class admin_welcomepage extends baseTest {
 
 
     //@Test(groups = "admin_users")
-    public void signout() throws InterruptedException {
+    public void signout() throws InterruptedException, FileNotFoundException {
 
         awp = admin_welcomepage();
         Thread.sleep(2000);
@@ -48,7 +49,7 @@ public class admin_welcomepage extends baseTest {
     }
 
     @Test(groups = "admin_users")
-    public void active_requirement_details() throws InterruptedException {
+    public void active_requirement_details() throws InterruptedException, IOException {
         newlogin();
         awp = admin_welcomepage();
 
@@ -62,13 +63,13 @@ public class admin_welcomepage extends baseTest {
             System.out.println(abc.get(i).getText());
         }
 
-         approve_vendor("shop");
-        reject_vendor("avxPf");
+         approve_vendor("Pxpdm");
+        reject_vendor("kOZxk");
         signout();
 
     }
 // @Test()
-    public void approve_vendor(String shopname) throws InterruptedException {
+    public void approve_vendor(String shopname) throws InterruptedException, FileNotFoundException {
        // newlogin();
         awp = admin_welcomepage();
         int before_approval = awp.vendor_names().size();
@@ -113,7 +114,7 @@ public class admin_welcomepage extends baseTest {
     }
 
 //@Test()
-    public void reject_vendor(String shopname) throws InterruptedException {
+    public void reject_vendor(String shopname) throws InterruptedException, FileNotFoundException {
        // newlogin();
         awp = admin_welcomepage();
         int before_rej = awp.vendor_names().size();
@@ -158,7 +159,7 @@ public class admin_welcomepage extends baseTest {
     }
 
     @Test(groups={"admin_dashboard_result","admin_users"})
-    public void day_results() throws InterruptedException {
+    public void day_results() throws InterruptedException, IOException {
         newlogin();
         awp = admin_welcomepage();
         Thread.sleep(3000);
@@ -173,7 +174,7 @@ public class admin_welcomepage extends baseTest {
     }
 
     @Test(groups={"admin_dashboard_result", "admin_users"})
-    public void month_results() throws InterruptedException {
+    public void month_results() throws InterruptedException, IOException {
         newlogin();
         awp = admin_welcomepage();
         Thread.sleep(3000);
@@ -188,7 +189,7 @@ public class admin_welcomepage extends baseTest {
     }
 
     @Test(groups={"admin_dashboard_result","admin_users"})
-    public void year_results() throws InterruptedException {
+    public void year_results() throws InterruptedException, IOException {
         newlogin();
         awp = admin_welcomepage();
         Thread.sleep(3000);

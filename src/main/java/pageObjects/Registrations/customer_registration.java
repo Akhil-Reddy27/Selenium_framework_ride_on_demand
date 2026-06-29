@@ -7,12 +7,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.FileNotFoundException;
+
 public class customer_registration extends common_pro {
 
     public WebDriver driver;
 
-    public customer_registration(WebDriver driver)
-    {
+    public customer_registration(WebDriver driver) throws FileNotFoundException {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);

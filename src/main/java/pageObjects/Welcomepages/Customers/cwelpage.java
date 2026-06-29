@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class cwelpage extends common_pro {
     public WebDriver driver;
-    public cwelpage(WebDriver driver)
-    {
+    public cwelpage(WebDriver driver) throws FileNotFoundException {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);

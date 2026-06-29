@@ -99,8 +99,7 @@ public class baseTest {
     }
 
 
-    public customer_registration customer_landing_page()
-    {
+    public customer_registration customer_landing_page() throws IOException {
 
         cr = new customer_registration(driver);
         cr.gotoPage();
@@ -128,16 +127,14 @@ public class baseTest {
 
 
 
-    public Admin_registration admin_landing_page()
-    {
+    public Admin_registration admin_landing_page() throws IOException {
 
         ar = new Admin_registration(driver);
         ar.gotoPage();
         return ar;
     }
 
-    public Vendor_registration vendor_landing_page()
-    {
+    public Vendor_registration vendor_landing_page() throws IOException {
 
         vr = new Vendor_registration(driver);
         vr.gotoPage();
@@ -145,68 +142,58 @@ public class baseTest {
     }
 
 
-    public Admin_login Admin_login_page()
-    {
+    public Admin_login Admin_login_page() throws IOException {
         al= new Admin_login(driver);
         al.gotoPage();
         return al;
     }
-    public Customer_login Customer_login_page()
-    {
+    public Customer_login Customer_login_page() throws IOException {
         cl = new Customer_login(driver);
         cl.gotoPage();
         return cl;
     }
 
-    public Vendor_login Vendor_login_page()
-    {
+    public Vendor_login Vendor_login_page() throws IOException {
         vl = new Vendor_login(driver);
         vl.gotoPage();
         return vl;
     }
 
-    public cwelpage customer_welcomepage()
-    {
+    public cwelpage customer_welcomepage() throws FileNotFoundException {
         cwp = new cwelpage(driver);
         return cwp;
     }
 
-    public awel admin_welcomepage()
-    {
+    public awel admin_welcomepage() throws FileNotFoundException {
         awp = new awel(driver);
         return awp;
     }
 
-    public vwel vendor_welcomepage()
-    {
+    public vwel vendor_welcomepage() throws FileNotFoundException {
         vwp = new vwel(driver);
         return vwp;
     }
 
-    public vendor_profile vendor_profile_btn()
-    {
+    public vendor_profile vendor_profile_btn() throws FileNotFoundException {
         vprofile = new vendor_profile(driver);
         return vprofile;
     }
 
 
-    public admin_profile admin_profile_btn()
-    {
+    public admin_profile admin_profile_btn() throws FileNotFoundException {
         aprofile = new admin_profile(driver);
         return aprofile;
     }
 
 
-    public profile_page profile_btn()
-    {
+    public profile_page profile_btn() throws FileNotFoundException {
         pag = new profile_page(driver);
         return pag;
 
     }
 
 
-    public post_requirementspage post_req()
-    {
+    public post_requirementspage post_req() throws FileNotFoundException {
         prp = new post_requirementspage(driver);
         return prp;
 

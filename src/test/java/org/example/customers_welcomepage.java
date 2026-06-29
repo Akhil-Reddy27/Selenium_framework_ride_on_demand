@@ -10,6 +10,8 @@ import pageObjects.Welcomepages.Customers.post_requirementspage;
 import pageObjects.Welcomepages.Customers.profile_page;
 import pageObjects.logins.Customer_login;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class customers_welcomepage extends baseTest {
@@ -22,14 +24,13 @@ public class customers_welcomepage extends baseTest {
 
     //@Test()
 
-    public void login()
-    {
+    public void login() throws IOException {
         cl = Customer_login_page();
     cl.login_application("akhilfire@gmail.com","akhil7890");
     cl.login_into();
 
     }
-    public void profile_details_logout() throws InterruptedException {
+    public void profile_details_logout() throws InterruptedException, FileNotFoundException {
 //
 //        Thread.sleep(3000);
 
@@ -51,7 +52,7 @@ public class customers_welcomepage extends baseTest {
     }
 
     @Test(groups = {"customer_users"})
-    public void create_postrequirement() throws InterruptedException {
+    public void create_postrequirement() throws InterruptedException, IOException {
         login();
         Thread.sleep(3000);
         cwp = customer_welcomepage();
@@ -68,7 +69,7 @@ public class customers_welcomepage extends baseTest {
     }
 
     @Test(groups = {"customer_users"})
-    public void printing_details_for_active_requests_and_accepting_offers_based_user_max_budget() throws InterruptedException {
+    public void printing_details_for_active_requests_and_accepting_offers_based_user_max_budget() throws InterruptedException, IOException {
         login();
         Thread.sleep(3000);
         cwp = customer_welcomepage();
@@ -86,7 +87,7 @@ public class customers_welcomepage extends baseTest {
 
 
 
-    public void checking_for_offers_for_active_requests(double maxUserBudgetPerDay) throws InterruptedException {
+    public void checking_for_offers_for_active_requests(double maxUserBudgetPerDay) throws InterruptedException, FileNotFoundException {
 
         cwp = customer_welcomepage();
 

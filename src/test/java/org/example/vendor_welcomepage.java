@@ -11,6 +11,7 @@ import pageObjects.Welcomepages.Vendor.vendor_profile;
 import pageObjects.Welcomepages.Vendor.vwel;
 import pageObjects.logins.Vendor_login;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 
@@ -21,15 +22,14 @@ public class vendor_welcomepage extends baseTest {
     public vendor_profile vprofile;
     public Vendor_login vl;
 
-    public void login()
-    {
+    public void login() throws IOException {
         vl = Vendor_login_page();
         vl.login_application("akhil2004@gmail.com","akhil7890");
         vl.login_into();
     }
 
    //@Test(groups = {"vendor_users"})
-    public void profile_details() throws InterruptedException {
+    public void profile_details() throws InterruptedException, IOException {
         login();
         vwp = vendor_welcomepage();
         Thread.sleep(2000);
@@ -48,7 +48,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
     @Test(groups = {"vendor_users"})
-    public void get_details() throws InterruptedException {
+    public void get_details() throws InterruptedException, IOException {
         login();
         Thread.sleep(2000);
         vwp=vendor_welcomepage();
@@ -60,7 +60,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
     @Test(groups = {"vendor_users"})
-    public void live_requirement_details() throws InterruptedException {
+    public void live_requirement_details() throws InterruptedException, IOException {
         login();
         Thread.sleep(2000);
         vwp=vendor_welcomepage();
@@ -77,7 +77,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
     @Test(groups = {"vendor_users"})
-    public void send_offer_to_request() throws InterruptedException {
+    public void send_offer_to_request() throws InterruptedException, IOException {
         login();
         // inherited 'driver' instance directly from baseTest
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -110,7 +110,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
     @Test(groups = {"vendor_users"})
-    public void cancelbtn_the_request_offer_after_filling() {
+    public void cancelbtn_the_request_offer_after_filling() throws IOException {
         login();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         vwp = vendor_welcomepage();
@@ -143,8 +143,7 @@ public class vendor_welcomepage extends baseTest {
 
 
     @Test(groups = {"vendor_users"})
-    public void clear_btn_for_for_all_requests()
-    {
+    public void clear_btn_for_for_all_requests() throws IOException {
         login();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         vwp = vendor_welcomepage();
@@ -170,8 +169,7 @@ public class vendor_welcomepage extends baseTest {
 
 
     @Test(groups = {"vendor_users"})
-    public void no_of_offers_you_offered()
-    {
+    public void no_of_offers_you_offered() throws IOException {
         login();
         vwp = vendor_welcomepage();
        System.out.println("My offers given to customers is: "+vwp.My_offer_list().size());
@@ -187,8 +185,7 @@ public class vendor_welcomepage extends baseTest {
     }
 
     @Test(groups = {"vendor_my_offers_status","vendor_users"})
-    public void pending_status_my_offers()
-    {
+    public void pending_status_my_offers() throws IOException {
         login();
         int count=0;
         vwp = vendor_welcomepage();
@@ -196,7 +193,9 @@ public class vendor_welcomepage extends baseTest {
         System.out.println("Pending Offer Details");
         for(int i=0;i<vwp.My_offer_list().size();i++)
         {
+            scrollTotheview((List<WebElement>) vwp.My_offer_list(),i);
             if(vwp.My_offer_list().get(i).getText().contains("Pending")) {
+                scrollTotheview((List<WebElement>) vwp.My_offer_list(),i);
                 System.out.println(vwp.My_offer_list().get(i).getText());
                 System.out.println();
                 count++;
@@ -212,15 +211,17 @@ public class vendor_welcomepage extends baseTest {
 
 
     @Test(groups = {"vendor_my_offers_status","vendor_users"})
-    public void Accepted_status_my_offers()
-    {
+    public void Accepted_status_my_offers() throws IOException {
         login();
         vwp = vendor_welcomepage();
 int count =0;
         System.out.println("Accepted Offer Details");
         for(int i=0;i<vwp.My_offer_list().size();i++)
         {
+            scrollTotheview((List<WebElement>) vwp.My_offer_list(),i);
+
             if(vwp.My_offer_list().get(i).getText().contains("Accepted")) {
+                scrollTotheview((List<WebElement>) vwp.My_offer_list(),i);
                 System.out.println(vwp.My_offer_list().get(i).getText());
                 System.out.println();
                 count++;
@@ -235,15 +236,16 @@ int count =0;
     }
 
     @Test(groups = {"vendor_my_offers_status","vendor_users"})
-    public void Rejected_status_my_offers()
-    {
+    public void Rejected_status_my_offers() throws IOException {
         login();
         vwp = vendor_welcomepage();
         int count =0;
         System.out.println("Rejected Offer Details");
         for(int i=0;i<vwp.My_offer_list().size();i++)
         {
+            scrollTotheview((List<WebElement>) vwp.My_offer_list(),i);
             if(vwp.My_offer_list().get(i).getText().contains("Rejected")) {
+                scrollTotheview((List<WebElement>) vwp.My_offer_list(),i);
                 System.out.println(vwp.My_offer_list().get(i).getText());
                 System.out.println();
                 count++;
@@ -257,7 +259,7 @@ int count =0;
     }
 
     @Test(groups = {"vendor_users"})
-    public void withdraw_the_offer_for_all() throws InterruptedException {
+    public void withdraw_the_offer_for_all() throws InterruptedException, IOException {
         login();
         vwp = vendor_welcomepage();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -276,11 +278,11 @@ int count =0;
 
 
     @Test(groups = {"vendor_users"})
-    public void withdrawing_a_particular_offer() throws InterruptedException {
+    public void withdrawing_a_particular_offer() throws InterruptedException, IOException {
         withdraw_a_particular_offer("Royal Enfield Classic");
     }
 
-    public void withdraw_a_particular_offer(String bikename) throws InterruptedException {
+    public void withdraw_a_particular_offer(String bikename) throws InterruptedException, IOException {
         login();
         vwp = vendor_welcomepage();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

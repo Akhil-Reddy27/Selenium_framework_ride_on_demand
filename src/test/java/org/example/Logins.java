@@ -21,32 +21,28 @@ public class Logins extends baseTest {
 
 
     @Test(dataProvider = "admin_login_dataprovider",groups = {"login_users"})
-    public void admin_Logins(HashMap<String,String> input)
-    {
+    public void admin_Logins(HashMap<String,String> input) throws IOException {
         al = Admin_login_page();
         al.login_application(input.get("email"),input.get("password"));
         al.login_into();
     }
 
     @Test(dataProvider = "vendor_login_dataprovider",groups = {"login_users"})
-    public void Vendor_Logins(HashMap<String,String> input)
-    { vl = Vendor_login_page();
+    public void Vendor_Logins(HashMap<String,String> input) throws IOException { vl = Vendor_login_page();
         vl.login_application(input.get("email"),input.get("password"));
         vl.login_into();
 
     }
 
     @Test(dataProvider = "customer_login_dataprovider",groups = {"login_users"})
-    public void Customer_Logins(HashMap<String,String> input)
-    {
+    public void Customer_Logins(HashMap<String,String> input) throws IOException {
         cl = Customer_login_page();
         cl.login_application(input.get("email"),input.get("password"));
         cl.login_into();
     }
 
     @Test(groups ={"error_test"},invocationCount = 5)
-    public void Invalid_Vendor_login()
-    {
+    public void Invalid_Vendor_login() throws IOException {
         vl = Vendor_login_page();
         vl.login_application("akhil12345456378e@gamil.com","akhil78900");
 
@@ -55,8 +51,7 @@ public class Logins extends baseTest {
 
     }
     @Test(groups ={"error_test"})
-    public void Invalid_Admin_login()
-    {
+    public void Invalid_Admin_login() throws IOException {
         al = Admin_login_page();
         al.login_application("akhil12345456378e@gamil.com","akhil78900");
         al.Error_login_info(al.log_proc);
@@ -64,8 +59,7 @@ public class Logins extends baseTest {
     }
 
     @Test(groups ={"error_test"})
-    public void Invalid_Customer_login()
-    {
+    public void Invalid_Customer_login() throws IOException {
         cl = Customer_login_page();
         cl.login_application("akhil12345456378e@gamil.com","akhil78900");
         cl.Error_login_info(cl.log_proc);
@@ -73,8 +67,7 @@ public class Logins extends baseTest {
     }
 
     @Test(groups = {"login_with_no_email_validation"})
-    public void noemail_customer_reg()
-    {
+    public void noemail_customer_reg() throws IOException {
         cl = Customer_login_page();
         cl.login_application(" ","12345678");
         cl.login();
@@ -84,8 +77,7 @@ Assert.assertTrue(false);
 
 
     @Test(groups = {"login_with_no_email_validation"})
-    public void noemail_admin_reg()
-    {
+    public void noemail_admin_reg() throws IOException {
         al = Admin_login_page();
         al.login_application(" ","akhil78900");
         al.login();
@@ -94,8 +86,7 @@ Assert.assertTrue(false);
     }
 
     @Test(groups = {"login_with_no_email_validation"})
-    public void noemail_vendor_reg()
-    {
+    public void noemail_vendor_reg() throws IOException {
         vl = Vendor_login_page();
         vl.login_application(" ","akhil78900");
 

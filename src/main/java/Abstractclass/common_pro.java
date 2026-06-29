@@ -6,14 +6,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.Properties;
 
 public class common_pro {
 
     public WebDriver driver;
-
-    public common_pro(WebDriver driver)
-    {
+    public common_pro(WebDriver driver) throws FileNotFoundException {
         this.driver = driver;
     }
 
@@ -31,9 +33,11 @@ public class common_pro {
         w.until(ExpectedConditions.invisibilityOf(e));
     }
 
-    public void gotoPage()
-    {
-        driver.get("https://frontend-johnprakashbalireddys-projects.vercel.app/");
+    public void gotoPage() throws IOException {
+        Properties props = new Properties();
+        FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"//src//main//java//resources//GlobalData.properties");
+        props.load(fis);
+        driver.get(props.getProperty("baseURL"));
     }
 
     public void Error_login_info(WebElement log_proc)

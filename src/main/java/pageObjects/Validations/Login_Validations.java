@@ -9,11 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.FileNotFoundException;
+
 public class Login_Validations extends common_pro {
     public WebDriver driver;
 
-    public Login_Validations(WebDriver driver)
-    {
+    public Login_Validations(WebDriver driver) throws FileNotFoundException {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);

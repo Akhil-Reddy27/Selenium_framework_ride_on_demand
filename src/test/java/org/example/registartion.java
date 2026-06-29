@@ -21,7 +21,7 @@ public class registartion extends baseTest {
 public WebDriver driver;
 
  @Test(dataProvider = "Customer_registration_dataprovider",groups = {"reg_users"})
-    public void Customer_Registrations(HashMap<String,String> input) {
+    public void Customer_Registrations(HashMap<String,String> input) throws IOException {
 cr =customer_landing_page();
        cr.customerRegistrationprocess(input.get("name"),input.get("email"),input.get("password"),input.get("phone"),input.get("location"));
         cr.proceed_with_Cregistration();
@@ -29,8 +29,7 @@ cr =customer_landing_page();
 
 
 @Test(dataProvider = "Admin_registration_dataprovider",groups = {"reg_users"})
-    public void Admin_Registration(HashMap<String,String> input)
-    {
+    public void Admin_Registration(HashMap<String,String> input) throws IOException {
         ar =admin_landing_page();
        ar.AdminRegistrationprocess(input.get("name"),input.get("email"),input.get("password"),input.get("phone"),input.get("location"));
        ar.proceed_with_Aregistration();
@@ -39,8 +38,7 @@ cr =customer_landing_page();
 
 
     @Test(dataProvider = "Vendor_registration_dataprovider",groups = {"reg_users"})
-    public void Vendor_Registration(HashMap<String,String> input)
-    {
+    public void Vendor_Registration(HashMap<String,String> input) throws IOException {
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess(input.get("name"),input.get("email"),input.get("password"),input.get("phone"),input.get("location"),input.get("companyName"));
         vr.proceed_with_Vregistration();
@@ -48,8 +46,7 @@ cr =customer_landing_page();
 
 
     @Test(groups ={"error_test"},invocationCount = 1)
-    public void duplicate_email_Vendor_regsitartion()
-    {
+    public void duplicate_email_Vendor_regsitartion() throws IOException {
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy","akhil123456@gamil.com","akhil789000","9989884094","hyd","ab vechiles");
        vr.Error_login_info(vr.proceedbtn);
@@ -60,8 +57,7 @@ cr =customer_landing_page();
 
     }
     @Test(groups ={"error_test"})
-    public void duplicate_email_Admin_regsitartion()
-    {
+    public void duplicate_email_Admin_regsitartion() throws IOException {
         ar = admin_landing_page();
        ar.AdminRegistrationprocess("Akhil Reddy","akhil123456@gamil.com","akhil789000","9989884094","hyd");
         ar.Error_login_info(ar.proceedbtn);
@@ -70,8 +66,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups ={"error_test"})
-    public void duplicate_email_Customer_regsitartion()
-    {
+    public void duplicate_email_Customer_regsitartion() throws IOException {
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy","akhil123456@gamil.com","akhil789000","9989884094","hyd");
         cr.Error_login_info(cr.proceedbtn);
@@ -80,8 +75,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups ={"error_test"})
-    public void noemail_customer_reg()
-    {
+    public void noemail_customer_reg() throws IOException {
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy"," ","akhil789000","9989884094","hyd");
         cr.proceedbtn.click();
@@ -91,8 +85,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups ={"error_test"})
-    public void noemail_admin_reg()
-    {
+    public void noemail_admin_reg() throws IOException {
         ar = admin_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy"," ","akhil789000","9989884094","hyd");
         ar.proceedbtn.click();
@@ -101,8 +94,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups ={"error_test"})
-    public void noemail_vendor_reg()
-    {
+    public void noemail_vendor_reg() throws IOException {
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy"," ","akhil789000","9989884094","hyd","ab vechiles");
         vr.proceedbtn.click();
@@ -111,8 +103,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void customer_invalid_email_missing_at_symbol()
-    {
+    public void customer_invalid_email_missing_at_symbol() throws IOException {
         // Rule: "@" is a must for email formatting
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy", "akhilreddy.com", "akhil789000", "9989884094", "hyd");
@@ -122,8 +113,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void customer_invalid_email_domain_validation()
-    {
+    public void customer_invalid_email_domain_validation() throws IOException {
         // Rule: Domain must be structurally valid (e.g., missing top-level extension like .com/.in)
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy", "akhil@com.", "akhil789000", "9989884094", "hyd");
@@ -134,9 +124,8 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void customer_city_validation()
-    {
-        // Rule: Domain must be structurally valid (e.g., missing top-level extension like .com/.in)
+    public void customer_city_validation() throws IOException {
+
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy", "akhil1@gmail.com", "akhil789000", "9989884194", " ");
         cr.proceedbtn.click();
@@ -145,9 +134,8 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void customer_invalid_password_length_less_than_eight()
-    {
-        // Rule: Password must be >= 8 characters (Testing failure with 7 characters)
+    public void customer_invalid_password_length_less_than_eight() throws IOException {
+        // Rule: Password must be >= 8 characters
         cr = customer_landing_page();
         cr.customerRegistrationprocess("Akhil Reddy", "akhil_valid@gmail.com", "1234567", "9989884094", "hyd");
         cr.proceedbtn.click();
@@ -158,8 +146,7 @@ cr =customer_landing_page();
 
 
     @Test(groups = {"error_test"})
-    public void vendor_invalid_email_missing_at_symbol()
-    {
+    public void vendor_invalid_email_missing_at_symbol() throws IOException {
         // Rule: "@" is a must for email formatting
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy", "akhilreddy.com", "akhil789000", "9989884094", "hyd", "ab vehicles");
@@ -171,9 +158,8 @@ cr =customer_landing_page();
 
 
     @Test(groups = {"error_test"})
-    public void vendor_city_validation()
-    {
-        // Rule: Domain must be structurally valid (e.g., missing top-level extension like .com/.in)
+    public void vendor_city_validation() throws IOException {
+
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy", "akhil@gmail.com", "akhil789000", "9989884094", " ","ab");
         vr.proceedbtn.click();
@@ -184,8 +170,7 @@ cr =customer_landing_page();
 
 
     @Test(groups = {"error_test"})
-    public void vendor_invalid_email_domain_validation()
-    {
+    public void vendor_invalid_email_domain_validation() throws IOException {
         // Rule: Domain must be structurally valid
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy", "akhil@com.", "akhil789000", "9989884094", "hyd", "ab vehicles");
@@ -196,8 +181,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void vendor_invalid_password_length_less_than_eight()
-    {
+    public void vendor_invalid_password_length_less_than_eight() throws IOException {
         // Rule: Password must be >= 8 characters
         vr = vendor_landing_page();
         vr.VendorRegistrationprocess("Akhil Reddy", "akhil_valid@gmail.com", "1234567", "9989884094", "hyd", "ab vehicles");
@@ -210,8 +194,7 @@ cr =customer_landing_page();
 
 
     @Test(groups = {"error_test"})
-    public void admin_invalid_email_missing_at_symbol()
-    {
+    public void admin_invalid_email_missing_at_symbol() throws IOException {
         // Rule: "@" is a must for email formatting
         ar = admin_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy", "akhilreddy.com", "akhil789000", "9989884094", "hyd");
@@ -222,8 +205,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void admin_city_validation()
-    {
+    public void admin_city_validation() throws IOException {
         // Rule: Domain must be structurally valid (e.g., missing top-level extension like .com/.in)
         ar = admin_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy", "akhil@gmail.com", "akhil789000", "9989884094", " ");
@@ -233,8 +215,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void admin_invalid_email_domain_validation()
-    {
+    public void admin_invalid_email_domain_validation() throws IOException {
         // Rule: Domain must be structurally valid
         ar = admin_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy", "akhil@com.", "akhil789000", "9989884094", "hyd");
@@ -245,8 +226,7 @@ cr =customer_landing_page();
     }
 
     @Test(groups = {"error_test"})
-    public void admin_invalid_password_length_less_than_eight()
-    {
+    public void admin_invalid_password_length_less_than_eight() throws IOException {
         // Rule: Password must be >= 8 characters
         ar = admin_landing_page();
         ar.AdminRegistrationprocess("Akhil Reddy", "akhil_valid@gmail.com", "1234567", "9989884094", "hyd");

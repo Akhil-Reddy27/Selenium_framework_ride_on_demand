@@ -7,13 +7,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class post_requirementspage extends common_pro {
 
     public WebDriver driver;
-    public post_requirementspage(WebDriver driver)
-    {
+    public post_requirementspage(WebDriver driver) throws FileNotFoundException {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
